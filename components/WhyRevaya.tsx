@@ -76,18 +76,18 @@ export const WhyRevaya: React.FC = () => {
           <div className={styles.collageGrid}>
             <div className={styles.collageColumn}>
               <div className={`${styles.whyImageTall} ${styles.revealItem}`} style={{ '--delay': '1' } as React.CSSProperties}>
-                <img src="/why1.png" alt="Analytics data overview chart" />
+                <img src="/Why1.png" alt="Analytics data overview chart" />
               </div>
               <div className={`${styles.whyImageShort} ${styles.revealItem}`} style={{ '--delay': '3' } as React.CSSProperties}>
-                <img src="/why4.png" alt="System distribution sales pipeline visualization" />
+                <img src="/Why4.png" alt="System distribution sales pipeline visualization" />
               </div>
             </div>
             <div className={styles.collageColumn}>
               <div className={`${styles.whyImageShort} ${styles.revealItem}`} style={{ '--delay': '2' } as React.CSSProperties}>
-                <img src="/why2.png" alt="Expense breakdown metrics dashboard" />
+                <img src="/Why2.png" alt="Expense breakdown metrics dashboard" />
               </div>
               <div className={`${styles.whyImageTall} ${styles.revealItem}`} style={{ '--delay': '4' } as React.CSSProperties}>
-                <img src="/why3.png" alt="HR profile allocation management matrix" />
+                <img src="/Why3.png" alt="HR profile allocation management matrix" />
               </div>
             </div>
           </div>
