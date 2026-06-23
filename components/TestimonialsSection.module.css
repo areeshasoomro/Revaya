@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght=500;700&display=swap');
+
+.sectionContainer {
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --color-electric-blue: #0190f9;
+  
+  background-color: #000000;
+  color: #ffffff;
+  padding: 140px 24px;
+  min-height: 120vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.leftCosmicGlow {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  top: 20%;
+  left: -200px;
+  background: radial-gradient(circle, rgba(1, 144, 249, 0.12) 0%, transparent 70%);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.rightCosmicGlow {
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  bottom: 5%;
+  right: -250px;
+  background: radial-gradient(circle, rgba(1, 144, 249, 0.1) 0%, transparent 70%);
+  filter: blur(120px);
+  pointer-events: none;
+}
+
+.headerBlock {
+  text-align: center;
+  margin-bottom: 120px;
+  z-index: 5;
+}
+
+.mainTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 3.8rem;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.02em;
+}
+
+.blueText {
+  color: var(--color-electric-blue);
+}
+
+.subSubtitle {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.cardsCanvas {
+  position: relative;
+  width: 100%;
+  max-width: 1060px;
+  height: 760px;
+}
+
+/* ─── EXTRA RADIANT PERMANENT GLASSMORPHISM GLOW ─── */
+.glassCard {
+  position: absolute;
+  width: 500px;
+  
+  /* Tinted blue back-panel base for permanent internal radiance */
+  background: linear-gradient(135deg, rgba(1, 144, 249, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+  
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  
+  /* Brightened vibrant neon blue border rim */
+  border: 1px solid rgba(1, 144, 249, 0.45);
+  border-radius: 28px;
+  padding: 56px 40px 40px 40px;
+  box-sizing: border-box;
+  
+  /* HEAVY PERMANENT ACTIVE GLOW (Multi-layered for dark backdrop projection) */
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.7),
+    0 0 30px rgba(1, 144, 249, 0.25),   /* Core bloom */
+    0 0 60px rgba(1, 144, 249, 0.12),   /* Wide ambient bloom */
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+  opacity: 0;
+  transform: translateY(40px) scale(0.97);
+  transition: opacity 0.8s cubic-bezier(0.215, 0.610, 0.355, 1), 
+              transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+              border-color 0.4s ease,
+              box-shadow 0.4s ease;
+}
+
+.animateIn .glassCard {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: calc(var(--card-idx) * 0.15s);
+}
+
+/* ─── PHYSICAL POP-UP HOVER STATE ─── */
+.glassCard:hover {
+  z-index: 10 !important;
+  border-color: rgba(1, 144, 249, 0.85);
+  
+  /* Physical lift action upward */
+  transform: translateY(-12px) scale(1.03) !important;
+  
+  /* Supercharged shadow on physical interaction */
+  box-shadow: 
+    0 40px 80px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(1, 144, 249, 0.4),
+    0 0 80px rgba(1, 144, 249, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Staggered Grid Positions matching Figma Overlay Pattern */
+.cardPosition1 {
+  top: 0;
+  left: 0;
+  z-index: 4;
+}
+
+.cardPosition2 {
+  top: 100px;
+  right: 0;
+  z-index: 3;
+}
+
+.cardPosition3 {
+  top: 340px;
+  left: 20px;
+  z-index: 2;
+}
+
+.cardPosition4 {
+  top: 450px;
+  right: 20px;
+  z-index: 1;
+}
+
+.avatarFrame {
+  position: absolute;
+  top: -38px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 3px solid rgba(1, 144, 249, 0.6); /* Vibrant permanent ring border */
+  background: #080b10;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7), 0 0 15px rgba(1, 144, 249, 0.3);
+  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glassCard:hover .avatarFrame {
+  border-color: #ffffff;
+  transform: translateX(-50%) scale(1.08);
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.quoteText {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 0 32px 0;
+  text-align: center;
+}
+
+.metaContainer {
+  text-align: center;
+}
+
+.clientName {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-electric-blue);
+  margin: 0 0 4px 0;
+  text-shadow: 0 0 10px rgba(1, 144, 249, 0.3);
+}
+
+.clientRole {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 1024px) {
+  .cardsCanvas {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+  }
+  
+  .glassCard {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100%;
+    max-width: 520px;
+  }
+  
+  .glassCard:hover {
+    transform: translateY(-12px) scale(1.03) !important;
+  }
+
+  .mainTitle {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .sectionContainer {
+    padding: 80px 16px;
+  }
+
+  .mainTitle {
+    font-size: 2.4rem;
+  }
+
+  .glassCard {
+    padding: 48px 24px 32px 24px;
+  }
+
+  .quoteText {
+    font-size: 0.95rem;
+  }
+}

@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap');
+
+.container {
+  --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-subtext: 'Asta Sans', 'Inter', system-ui, sans-serif;
+  
+  --color-blue-electric: #0190f9;
+  --color-bg-dark: #020205;
+  
+  background-color: var(--color-bg-dark);
+  color: #ffffff;
+  padding: 140px 40px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.card {
+  background: #040c16;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.card:hover {
+  border-color: rgba(1, 144, 249, 0.4);
+  /* Subtly transitions the card's dark background into a deep navy hue */
+  background: linear-gradient(135deg, #040c16 0%, #001932 100%);
+}
+
+/* ─── MOVING MESH GRADIENT LAYER ─── */
+.gradientOrb1, .gradientOrb2 {
+  position: absolute;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(140px);
+  opacity: 0.28;
+  z-index: 1;
+}
+
+.gradientOrb1 {
+  top: -10%;
+  right: 10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(1, 144, 249, 0.8) 0%, transparent 70%);
+  animation: floatOrb1 22s infinite alternate linear;
+}
+
+.gradientOrb2 {
+  bottom: -5%;
+  left: -5%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(1, 40, 249, 0.6) 0%, transparent 75%);
+  animation: floatOrb2 28s infinite alternate linear;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1280px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 64px;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+}
+
+/* ─── LEFT COLUMN ─── */
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.headerBlock {
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mainHeading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 3.6rem;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.02em;
+}
+
+.brandText {
+  color: var(--color-blue-electric);
+  text-shadow: 0 0 30px rgba(1, 144, 249, 0.25);
+}
+
+.subText {
+  font-family: var(--font-subtext);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  max-width: 520px;
+}
+
+/* ─── STAGGERED BENTO GALLERY ─── */
+.collageGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 70%;
+}
+
+.collageColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.whyImageTall, .whyImageShort {
+  background: #050b14;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.4s ease, 
+              box-shadow 0.4s ease;
+}
+
+.whyImageTall { flex: 1.35; }
+.whyImageShort { flex: 0.95; }
+
+.whyImageTall img, .whyImageShort img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover Dynamic Zoom & Shimmers */
+.whyImageTall:hover, .whyImageShort:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(1, 144, 249, 0.4);
+  box-shadow: 0 30px 60px rgba(1, 144, 249, 0.12), 0 0 1px 1px rgba(1, 144, 249, 0.2);
+}
+
+.whyImageTall:hover img, .whyImageShort:hover img {
+  transform: scale(1.025);
+}
+
+/* ─── RIGHT COLUMN FEATURE HIGHLIGHTS ─── */
+.rightColumn {
+  width: 100%;
+  padding-top: 218px; 
+  box-sizing: border-box;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px 36px;
+  width: 100%;
+}
+
+.featureCard {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: transform 0.4s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-2px);
+}
+
+/* ─── NOTCH BADGE SPECIFICS ─── */
+.badgeWrapper {
+  display: flex;
+}
+
+.badgeBox {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px 12px 12px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.badgeNumber {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--color-blue-electric);
+  transition: color 0.3s ease;
+}
+
+.featureCard:hover .badgeBox {
+  border-color: var(--color-blue-electric);
+  background-color: var(--color-blue-electric);
+  box-shadow: 0 10px 25px rgba(1, 144, 249, 0.4);
+}
+
+.featureCard:hover .badgeNumber {
+  color: #000000;
+}
+
+.featureContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.featureTitle {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.45rem;
+  margin: 0;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
+}
+
+.featureCard:hover .featureTitle {
+  color: var(--color-blue-electric);
+}
+
+.featureDescription {
+  font-family: var(--font-subtext);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+}
+
+/* ─── SCROLL INTERSECTION REVEAL DRIVER ─── */
+.revealItem {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--delay, 0) * 0.08s);
+}
+
+.animateIn.revealItem,
+.animateIn .revealItem {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── KEYFRAME ENGINES ─── */
+@keyframes floatOrb1 {
+  0% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(40px, -30px) scale(1.1); }
+  100% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+@keyframes floatOrb2 {
+  0% { transform: translate(0px, 0px) scale(0.95); }
+  50% { transform: translate(-30px, 40px) scale(1.05); }
+  100% { transform: translate(30px, -10px) scale(1); }
+}
+
+/* ─── RESPONSIVE SYSTEM RE-ALIGNMENT ─── */
+@media (max-width: 1100px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  .rightColumn {
+    padding-top: 0px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 80px 20px;
+  }
+  .mainHeading {
+    font-size: 2.5rem;
+  }
+  .collageGrid, .featuresGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}

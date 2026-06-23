@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(cd \"c:\\\\Users\\\\user\\\\my-site\"; $job = Start-Job -ScriptBlock { Set-Location \"c:\\\\Users\\\\user\\\\my-site\"; npm run build 2>&1 }; Start-Sleep -Seconds 40; Receive-Job $job | Select-Object -Last 20)"
+    ]
+  }
+}

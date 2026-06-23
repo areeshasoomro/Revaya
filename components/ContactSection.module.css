@@ -1,0 +1,354 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap');
+
+.sectionContainer {
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --color-neon-blue: #0190f9;
+  
+  background-color: #000000;
+  padding: 100px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.mainCardFrame {
+  width: 100%;
+  max-width: 1140px;
+  background-color: #050d14;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 40px;
+  padding: 64px 80px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.cardGlowOverlay {
+  position: absolute;
+  top: -20%;
+  right: -20%;
+  width: 70%;
+  height: 140%;
+  background: radial-gradient(circle, rgba(1, 144, 249, 0.16) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.formSide {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 3.6rem;
+  color: #ffffff;
+  margin: 0 0 14px 0;
+  letter-spacing: -0.02em;
+}
+
+.blueText {
+  color: var(--color-neon-blue);
+}
+
+.sectionSubtitle {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0 0 44px 0;
+  max-width: 480px;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  max-width: 460px;
+}
+
+.formInput, .formSelect {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  padding: 16px 24px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.formInput::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.formSelect {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+  background-repeat: no-repeat;
+  background-position: right 24px center;
+  background-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.formSelect option {
+  background-color: #050d14;
+  color: #ffffff;
+}
+
+.formInput:focus, .formSelect:focus {
+  border-color: rgba(1, 144, 249, 0.6);
+}
+
+/* ─── FIGMA CARD SPECIFIC GRADIENTS ─── */
+.submitBtn {
+  width: 100%;
+  background: linear-gradient(90deg, #0266cd 0%, #174cf6 100%);
+  border: none;
+  border-radius: 30px;
+  padding: 18px 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  margin-top: 6px;
+  transition: filter 0.2s ease;
+}
+
+.submitBtn:hover {
+  filter: brightness(1.1);
+}
+
+.actionRowContainer {
+  display: flex;
+  gap: 16px;
+  margin-top: 48px;
+  width: 100%;
+  max-width: 460px;
+}
+
+.bookCallBtn {
+  flex: 1;
+  background: linear-gradient(90deg, #0183f4 0%, #154ef6 100%);
+  border: none;
+  border-radius: 30px;
+  padding: 15px 24px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.whatsappLink {
+  flex: 1;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 30px;
+  padding: 15px 24px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease;
+}
+
+.whatsappLink:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.btnIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoSide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.logoImageContainer {
+  width: 340px;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brandLogoAsset {
+  object-fit: contain;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ─── TOAST NOTIFICATION STYLING PANEL ─── */
+.toastPanel {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background-color: #06111c;
+  border: 1px solid rgba(1, 144, 249, 0.4);
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+  z-index: 2000;
+  max-width: 360px;
+  animation: slideUpFade 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slideUpFade {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.toastStatusCircle {
+  background: linear-gradient(135deg, #0190f9 0%, #154ef6 100%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.toastTextFrame {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.toastHeader {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.toastDescription {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.4;
+}
+
+.toastDismissBtn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-left: auto;
+  padding-left: 8px;
+  transition: color 0.15s ease;
+}
+
+.toastDismissBtn:hover {
+  color: #ffffff;
+}
+
+/* ─── INTERACTION MODAL BOXES ─── */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalBody {
+  background-color: #050d14;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  padding: 40px;
+  width: 90%;
+  max-width: 480px;
+  position: relative;
+  color: #ffffff;
+}
+
+.modalCloseBtn {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+}
+
+.modalTitle {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  margin: 0 0 10px 0;
+}
+
+.modalText {
+  font-family: var(--font-body);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  margin: 0 0 24px 0;
+}
+
+.schedulerPlaceholder {
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 60px 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive Adaptive Viewports */
+@media (max-width: 1024px) {
+  .mainCardFrame { grid-template-columns: 1fr; padding: 48px; }
+  .logoSide { padding-top: 20px; }
+  .logoImageContainer { width: 260px; height: 260px; }
+}
+
+@media (max-width: 600px) {
+  .sectionContainer { padding: 40px 16px; }
+  .mainCardFrame { padding: 40px 24px; border-radius: 28px; }
+  .sectionTitle { font-size: 2.6rem; }
+  .actionRowContainer { flex-direction: column; gap: 12px; }
+  .logoImageContainer { width: 220px; height: 220px; }
+  .toastPanel { left: 16px; right: 16px; bottom: 16px; }
+}

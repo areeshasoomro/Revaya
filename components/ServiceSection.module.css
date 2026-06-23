@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap');
+
+@font-face {
+  font-family: 'Asta Sans';
+  src: url('/fonts/AstaSans-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.section {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 100px 24px;
+  text-align: center;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.highlight {
+  color: #0190f9;
+}
+
+.subtext {
+  font-family: 'Asta Sans', sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 620px;
+  margin: 0 auto 64px;
+  line-height: 1.6;
+}
+
+/* ─── 3-COLUMN ASYMMETRIC BENTO GRID ─── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Base Card Style */
+.card {
+  border-radius: 24px;
+  padding: 40px;
+  text-align: left;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  box-sizing: border-box;
+  min-height: 340px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.cardTextContent {
+  max-width: 80%;
+  z-index: 2;
+}
+
+.cardTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.01em;
+}
+
+.cardDescription {
+  font-family: 'Asta Sans', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Theme 1: Subtle Dark Base (Neutral Grey Border) */
+.darkTheme {
+  background-color: #050a0e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Theme 2: Radiant Blue Accent Border (Matches Figma Glow Elements) */
+.blueGradientTheme {
+  background: linear-gradient(180deg, #04101e 0%, #02070d 100%);
+  border: 1px solid rgba(1, 144, 249, 0.35);
+  box-shadow: inset 0 0 20px rgba(1, 144, 249, 0.05);
+}
+
+/* ─── PIXEL PERFECT ROW PLACEMENTS ─── */
+
+/* Row 1: Left Wide (2/3) + Right Narrow (1/3) */
+.erpCard {
+  grid-column: span 2;
+}
+
+.saasCard {
+  grid-column: span 1;
+}
+
+/* Row 2: Left Narrow (1/3) + Right Wide (2/3) -> Resolves black space gap */
+.webCard {
+  grid-column: span 1;
+}
+
+.uiuxCard {
+  grid-column: span 2;
+}
+
+/* Rows 3 & 4: Full Horizontal Stretch Over Entire Row Layout */
+.automationCard {
+  grid-column: span 3;
+  min-height: 280px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.mobileCard {
+  grid-column: span 3;
+  min-height: 280px;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* Constrain descriptive text layout block for ultra-wide row slots */
+.automationCard .cardTextContent,
+.mobileCard .cardTextContent {
+  max-width: 55%;
+}
+
+/* ─── ABSOLUTE GRAPHIC VECTOR POSITIONING ─── */
+.imageContainer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cardImage {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+/* Custom sizes for assets depending on layout proportions */
+.erpCard .cardImage {
+  width: 50%;
+  max-height: 60%;
+  right: 4%;
+  top: 35%;
+}
+
+.uiuxCard .cardImage {
+  width: 45%;
+  max-height: 70%;
+  right: 4%;
+}
+
+.saasCard .cardImage,
+.webCard .cardImage {
+  width: 70%;
+  max-height: 50%;
+  right: 5%;
+}
+
+.automationCard .cardImage {
+  width: 32%;
+  max-height: 85%;
+  right: 8%;
+}
+
+.mobileCard .cardImage {
+  width: 28%;
+  max-height: 90%;
+  right: 12%;
+}
+
+/* ─── FIGMA SQUARED ACTION ARROW BUTTONS ─── */
+.arrowButton {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: rgba(1, 144, 249, 1); /* Keeps iconic cyan pointer accent color active */
+  z-index: 3;
+  transition: all 0.25s ease;
+}
+
+/* Clean bottom alignment override metrics across wide grid elements */
+.automationCard .arrowButton,
+.mobileCard .arrowButton {
+  top: auto;
+  bottom: 32px;
+}
+
+/* Hover Micro-interactions */
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card:hover .arrowButton {
+  background-color: #0190f9;
+  color: #ffffff;
+  border-color: #0190f9;
+  transform: scale(1.05);
+}
+
+.card:hover .cardImage {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* ─── RESPONSIVE BREAKPOINTS ─── */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .erpCard, .saasCard, .webCard, .uiuxCard, .automationCard, .mobileCard {
+    grid-column: span 2 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .erpCard, .saasCard, .webCard, .uiuxCard, .automationCard, .mobileCard {
+    grid-column: span 1 !important;
+    min-height: 360px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .automationCard .cardTextContent,
+  .mobileCard .cardTextContent,
+  .cardTextContent {
+    max-width: 100% !important;
+    margin-bottom: 160px;
+  }
+
+  .cardImage {
+    width: 240px !important;
+    max-height: 45% !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .section { padding: 60px 16px; }
+  .heading { font-size: 32px; }
+  .card { padding: 28px; }
+  .cardTitle { font-size: 20px; }
+}

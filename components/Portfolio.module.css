@@ -1,0 +1,395 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap');
+
+.container {
+  --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-subtext: 'Asta Sans', 'Inter', system-ui, sans-serif;
+  
+  --color-blue-electric: #0190f9;
+  --color-blue-royal: #1c48b9;
+  --color-bg-dark: #000000;
+  
+  background-color: var(--color-bg-dark);
+  color: #ffffff;
+  padding: 100px 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.mainHeading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px 0;
+}
+
+.blueText {
+  color: var(--color-blue-electric);
+}
+
+.subText {
+  font-family: var(--font-subtext);
+  font-weight: 400;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* 3-COLUMN LAYOUT CARDS SYSTEM */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.card {
+  background: #020b14;
+  border: 1px solid rgba(1, 144, 249, 0.3);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 25px rgba(1, 144, 249, 0.15);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+              border-color 0.4s ease, 
+              box-shadow 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-blue-electric);
+  box-shadow: 0 0 35px rgba(1, 144, 249, 0.4);
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #000;
+  overflow: hidden;
+}
+
+.cardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 2;
+  background: var(--color-blue-royal);
+  color: #ffffff;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-family: var(--font-subtext);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.cardContent {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  margin: 0 0 12px 0;
+}
+
+.cardDesc {
+  font-family: var(--font-subtext);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 24px 0;
+  flex-grow: 1;
+}
+
+/* INTERACTIVE ACTION VIEW CASE STUDY BUTTON */
+.ctaButton {
+  background: linear-gradient(90deg, #017ae2 0%, #153fa3 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 24px;
+  font-family: var(--font-subtext);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.ctaButton:hover {
+  background: linear-gradient(90deg, var(--color-blue-electric) 0%, var(--color-blue-royal) 100%);
+}
+
+.ctaButton:active {
+  transform: scale(0.98);
+}
+
+.arrowCircle {
+  width: 22px;
+  height: 22px;
+  background: #ffffff;
+  color: #000000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.ctaButton:hover .arrowCircle {
+  transform: translateX(3px);
+}
+
+/* ─── FIXED MODAL OVERLAY WITH GLASSMORPHISM BACKDROP ─── */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45); /* High transmittance alpha layer */
+  backdrop-filter: blur(24px) cubic-bezier(0.25, 1, 0.5, 1); /* Deep micro blur styling */
+  -webkit-backdrop-filter: blur(24px); /* Complete compatibility rules for Safari build layers */
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeInBackdrop 0.35s ease forwards;
+}
+
+/* ─── FIXED GLASSMORPHISM CONTAINER BODY FOR INTERNAL CARDS ─── */
+.modalBody {
+  background: rgba(10, 10, 12, 0.7); /* Translucent dark frosted container layout */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12); /* Subtle structural border highlighting */
+  border-radius: 24px;
+  width: 100%;
+  max-width: 720px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 36px;
+  position: relative;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Embedded glass shine effect */
+  animation: scaleUpModal 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; /* Snappy cinematic bounce entry */
+}
+
+/* Custom internal modal scrollbar layout */
+.modalBody::-webkit-scrollbar {
+  width: 6px;
+}
+.modalBody::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.modalBadge {
+  background: var(--color-blue-royal);
+  padding: 4px 14px;
+  border-radius: 12px;
+  font-family: var(--font-subtext);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.closeButton:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* TWIN PILLARS CHALLENGE/SOLUTION GRID */
+.twinPillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.pillarBlueBox {
+  background: linear-gradient(135deg, rgba(1, 144, 249, 0.25) 0%, rgba(20, 61, 159, 0.1) 100%);
+  border: 1px solid rgba(1, 144, 249, 0.35);
+  border-radius: 16px;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+}
+
+.pillarBlueBox h4 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  margin: 0 0 12px 0;
+  color: #ffffff;
+}
+
+.pillarBlueBox p {
+  font-family: var(--font-subtext);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* METRICS CARD ROW SYSTEM */
+.metricsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.metricCard {
+  background: rgba(1, 144, 249, 0.85); /* Slightly translucent solid blue highlights */
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(1, 144, 249, 0.2);
+}
+
+.metricValue {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.metricLabel {
+  font-family: var(--font-subtext);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* TECH STACK TAGS */
+.techSection h4, .screenshotsSection h4 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  margin: 0 0 14px 0;
+  letter-spacing: 0.02em;
+}
+
+.techSection {
+  margin-bottom: 32px;
+}
+
+.techGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.techTag {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-family: var(--font-subtext);
+  font-size: 0.8rem;
+}
+
+/* SCREENSHOTS COMPONENT SECTION */
+.screenshotsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.screenWrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  aspect-ratio: 16 / 10;
+}
+
+.screenWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* LAYER KEYFRAMES */
+@keyframes fadeInBackdrop {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUpModal {
+  from { opacity: 0; transform: scale(0.92) translateY(15px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* RESPONSIVE SCALING ADAPTATIONS */
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .twinPillars, .screenshotsGrid {
+    grid-template-columns: 1fr;
+  }
+  .metricsRow {
+    grid-template-columns: 1fr;
+  }
+  .modalBody {
+    padding: 20px;
+  }
+}

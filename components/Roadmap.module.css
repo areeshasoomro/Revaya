@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap');
+
+.container {
+  --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-subtext: 'Asta Sans', 'Inter', system-ui, sans-serif;
+  
+  --color-blue-electric: #0190f9;
+  --color-blue-royal: #1c48b9;
+  --color-bg-dark: #000000;
+  --color-card-border: rgba(255, 255, 255, 0.4);
+  
+  background-color: var(--color-bg-dark);
+  color: #ffffff;
+  padding: 80px 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.mainHeading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 2.8rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0 0 20px 0;
+}
+
+.gradientText {
+  color: var(--color-blue-electric);
+}
+
+.subText {
+  font-family: var(--font-subtext);
+  font-weight: 400;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* TRACK & PILLARS CONTAINER */
+.roadmapTrack {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.connectingLine {
+  position: absolute;
+  top: 75px; 
+  left: 20px;
+  right: 20px;
+  height: 3px;
+  background: var(--color-blue-electric);
+  z-index: 1;
+}
+
+.pillarsContainer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  gap: 14px;
+  align-items: stretch;
+  min-height: 520px;
+}
+
+/* BASE INDIVIDUAL PILLAR */
+.pillar {
+  background: #09090b;
+  border: 1px solid var(--color-card-border);
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
+              background-color 0.4s ease, 
+              border-color 0.4s ease,
+              transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  flex: 1;
+}
+
+.pillar:hover:not(.activePillar) {
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-4px);
+  background: #111115;
+}
+
+/* EXPANDED STATE ENGINE */
+.activePillar {
+  flex: 4.8;
+  background: linear-gradient(135deg, #011d37 0%, #000b14 100%);
+  border-color: var(--color-blue-electric);
+  cursor: default;
+}
+
+/* CLOSED PILLAR ARCHITECTURE */
+.closedContent {
+  padding: 24px 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.circleNumber {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  background: #000000;
+  z-index: 3;
+}
+
+.glowOverlay {
+  position: absolute;
+  top: 32px;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: linear-gradient(180deg, rgba(1, 144, 249, 0.35) 0%, rgba(1, 144, 249, 0) 100%);
+  opacity: 0.8;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.pillar:hover .glowOverlay {
+  opacity: 1;
+}
+
+/* ─── FIX: ADJUST VERTICAL TEXT PLACEMENT ─── */
+.verticalTitleWrapper {
+  margin-top: auto;
+  margin-bottom: 90px; /* Pushed up from 30px to clear the bottom boundary entirely */
+  transform: rotate(-90deg);
+  transform-origin: center center;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 0; /* Keeps rotation bounding box centered perfectly within columns */
+}
+
+.verticalTitle {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+/* OPEN ACTIVE PILLAR ARCHITECTURE */
+.openContent {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.activeTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.activeCircleNumber {
+  width: 34px;
+  height: 34px;
+  background: #ffffff;
+  color: #000000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.phaseBadge {
+  background: linear-gradient(90deg, var(--color-blue-electric) 0%, var(--color-blue-royal) 100%);
+  padding: 6px 32px;
+  border-radius: 20px;
+  font-family: var(--font-subtext);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 14px rgba(1, 144, 249, 0.3);
+}
+
+.activeMainArea {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  flex-grow: 1;
+}
+
+/* ─── FIX: ENHANCED BLUE SIDE ACCENT LINE LENGTH ─── */
+.accentBar {
+  width: 6px;
+  align-self: stretch; /* Replaced fixed min-height with stretch to dynamically match text bounds */
+  background: var(--color-blue-electric);
+  border-radius: 4px;
+  margin-bottom: 24px; /* Matches the text system flow nicely */
+  box-shadow: 0 0 14px rgba(1, 144, 249, 0.6);
+  animation: scaleVertical 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.detailsBlock {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.activeTitle {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.01em;
+}
+
+.activeDescription {
+  font-family: var(--font-subtext);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 24px 0;
+  max-width: 440px;
+}
+
+.bulletList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bulletList li {
+  font-family: var(--font-subtext);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  position: relative;
+  padding-left: 0;
+  animation: slideInRight 0.4s ease forwards;
+}
+
+/* ANIMATION KEYFRAMES */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scaleVertical {
+  from { transform: scaleY(0); transform-origin: top; }
+  to { transform: scaleY(1); transform-origin: top; }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* RESPONSIVE LAYOUT SCALING Rules */
+@media (max-width: 900px) {
+  .pillarsContainer {
+    flex-direction: column;
+    min-height: auto;
+  }
+  
+  .connectingLine {
+    display: none; 
+  }
+
+  .pillar {
+    flex: none !important;
+    width: 100%;
+    min-height: 80px;
+  }
+  
+  .activePillar {
+    min-height: 380px;
+  }
+
+  .closedContent {
+    flex-direction: row;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .glowOverlay {
+    top: 0;
+    left: 40px;
+    height: 100%;
+    width: 60px;
+    background: linear-gradient(90deg, rgba(1, 144, 249, 0.2) 0%, rgba(1, 144, 249, 0) 100%);
+  }
+
+  .verticalTitleWrapper {
+    margin: 0;
+    transform: none;
+    width: auto;
+  }
+}

@@ -1,0 +1,439 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Asta+Sans:wght@400;500;600&display=swap");
+
+/* ===== Section shell ===== */
+.section {
+  background: #02030b;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* ===== Marquee ===== */
+.marqueeOuter {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(90deg, rgba(9, 101, 255, 0.95), rgba(1, 178, 255, 0.95));
+  padding: 12px 0;
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: marquee 18s linear infinite;
+}
+
+.marqueeGroup {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.marqueeItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 50px;
+  white-space: nowrap;
+  padding: 0 20px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.marqueeDash {
+  opacity: 0.65;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marqueeOuter:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+
+/* ===== Copy ===== */
+.inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 88px 24px 100px;
+  text-align: center;
+}
+
+.topTagWrapper {
+  display: flex;
+  width: 100%;
+  margin-bottom: 28px;
+}
+
+.sideTag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 210px;
+  text-align: center;
+  color: #ffffff;
+  background: linear-gradient(90deg, rgba(0, 126, 255, 0.98), rgba(0, 191, 255, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  cursor: default;
+  box-shadow: 0 12px 40px rgba(1, 115, 255, 0.22);
+}
+
+.sideTagRight {
+  margin-left: auto;
+}
+
+.heading {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.05;
+  margin: 0 0 24px;
+}
+
+.highlight {
+  background: linear-gradient(90deg, #0190f9, #1c48b9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtext {
+  font-family: "Asta Sans", sans-serif;
+  font-weight: 400;
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 640px;
+  margin: 0 auto 72px;
+}
+
+/* ===== Diagram layout ===== */
+.diagram {
+  position: relative;
+  display: grid;
+  /* minmax(0, ...) stops the grid from "blowing out" if any inner content
+     tries to claim more width than the track has — this was the root cause
+     of the right column pushing off-screen */
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  min-height: 460px;
+}
+
+.diagram::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 620px;
+  height: 620px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(7, 135, 255, 0.28), rgba(0, 29, 88, 0.05) 45%, transparent 72%);
+  filter: blur(42px);
+  z-index: 0;
+}
+
+.linesSvg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.linesSvg line {
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+
+.lineRed {
+  stroke: #ff5c5c;
+  opacity: 0.6;
+}
+
+.lineGreen {
+  stroke: #2ee6a6;
+  opacity: 0.65;
+}
+
+.col {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 50px;
+  min-width: 0; /* lets the column shrink instead of forcing overflow */
+}
+
+.colRight {
+  align-items: flex-end;
+}
+
+.colHeader {
+  display: none;
+}
+
+.pillList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 29px;
+  width: 100%;
+}
+
+.pillRow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.pillRow[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* anchor the badge+pill group to the outer edge of its column,
+   instead of stretching the pill to fill the whole column width */
+.colRight .pillRow {
+  justify-content: flex-end;
+}
+
+.pillBody {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #0c0d10;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  width: 220px;
+  flex-shrink: 0;
+  padding: 6px 16px 6px 6px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.pillRow:hover .pillBody {
+  transform: translateY(-2px);
+}
+
+.col:first-of-type .pillBody {
+  border-color: rgba(255, 92, 92, 0.45);
+  box-shadow: 0 0 0 1px rgba(255, 92, 92, 0.12), 0 0 22px -4px rgba(255, 92, 92, 0.45);
+}
+
+.col:first-of-type .pillRow:hover .pillBody {
+  border-color: rgba(255, 92, 92, 0.75);
+  box-shadow: 0 0 0 1px rgba(255, 92, 92, 0.2), 0 0 30px -2px rgba(255, 92, 92, 0.6);
+}
+
+.colRight .pillBody {
+  border-color: rgba(46, 230, 166, 0.45);
+  box-shadow: 0 0 0 1px rgba(46, 230, 166, 0.12), 0 0 22px -4px rgba(46, 230, 166, 0.45);
+}
+
+.colRight .pillRow:hover .pillBody {
+  border-color: rgba(46, 230, 166, 0.75);
+  box-shadow: 0 0 0 1px rgba(46, 230, 166, 0.2), 0 0 30px -2px rgba(46, 230, 166, 0.6);
+}
+
+.pillLabel {
+  flex: 1 1 auto;
+  font-family: "Asta Sans", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #f2f2f2;
+  white-space: nowrap;
+}
+
+.pillIcon {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.pillIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* badge now sits nested inside the pill (left-most element), matching the
+   Figma reference, instead of floating as a separate circle outside it */
+.badge {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid currentColor;
+  flex-shrink: 0;
+}
+
+.badge svg {
+  width: 13px;
+  height: 13px;
+}
+
+.badgeRed {
+  color: #ff5c5c;
+  background: rgba(255, 85, 85, 0.1);
+}
+
+.badgeGreen {
+  color: #2ee6a6;
+  background: rgba(46, 230, 166, 0.1);
+}
+
+/* ===== Sphere =====
+   ball.png already has the glow baked in from your Figma export, so this
+   wrapper stays transparent — it just holds the rotation + an ambient
+   halo behind it. Adding another background/ring here was doubling up
+   with the image and is what made the white ring look too thick. */
+.sphereWrap {
+  position: relative;
+  z-index: 1;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sphereGlow {
+  position: absolute;
+  inset: -30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(1, 144, 249, 0.35), transparent 70%);
+  filter: blur(24px);
+  animation: pulse 4.5s ease-in-out infinite;
+  z-index: 0;
+}
+
+.sphereSpin {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  animation: spin 36s linear infinite;
+  z-index: 1;
+}
+
+.sphereImg {
+  object-fit: cover;
+  transform: scale(1.18);
+}
+
+.logoImg {
+  position: absolute;
+  z-index: 2;
+  width: 36%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.4));
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 880px) {
+  .diagram {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 40px;
+  }
+
+  .linesSvg {
+    display: none;
+  }
+
+  .col,
+  .colRight {
+    align-items: center;
+  }
+
+  .pillRow,
+  .colRight .pillRow {
+    justify-content: center;
+  }
+
+  .pillBody {
+    width: min(280px, 80vw);
+  }
+
+  .topTagWrapper {
+    justify-content: center;
+  }
+
+  .sideTagRight {
+    margin-left: 0;
+  }
+
+  .col {
+    order: 2;
+  }
+
+  .colRight {
+    order: 3;
+  }
+
+  .sphereWrap {
+    order: 1;
+    width: 220px;
+    height: 220px;
+  }
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack,
+  .sphereSpin,
+  .sphereGlow {
+    animation: none;
+  }
+
+  .pillRow {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
