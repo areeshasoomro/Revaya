@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './TestimonialsSection.module.css';
 
 interface TestimonialCard {
@@ -43,29 +43,14 @@ const testimonialsData: TestimonialCard[] = [
 ];
 
 export const TestimonialsSection: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.animateIn);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
+    setIsMounted(true);
   }, []);
 
   return (
-    <section ref={sectionRef} className={styles.sectionContainer}>
+    <section className={styles.sectionContainer}>
       <div className={styles.leftCosmicGlow} />
       <div className={styles.rightCosmicGlow} />
 
@@ -77,7 +62,7 @@ export const TestimonialsSection: React.FC = () => {
       </div>
 
       <div className={styles.cardsCanvas}>
-        {testimonialsData.map((item, idx) => (
+        {isMounted && testimonialsData.map((item, idx) => (
           <div 
             key={item.id} 
             className={`${styles.glassCard} ${styles[`cardPosition${idx + 1}`]}`}

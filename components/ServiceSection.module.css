@@ -160,21 +160,21 @@
 .erpCard .cardImage {
   width: 50%;
   max-height: 60%;
-  right: 4%;
+  right: 28%;
   top: 35%;
 }
 
 .uiuxCard .cardImage {
   width: 45%;
   max-height: 70%;
-  right: 4%;
+  right: 30%;
 }
 
 .saasCard .cardImage,
 .webCard .cardImage {
   width: 70%;
   max-height: 50%;
-  right: 5%;
+  right: 22%;
 }
 
 .automationCard .cardImage {

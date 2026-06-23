@@ -79,7 +79,6 @@ export const Roadmap: React.FC = () => {
       </header>
 
       <div className={styles.roadmapTrack}>
-        {/* The horizontal connection line running through the pillars */}
         <div className={styles.connectingLine}></div>
 
         <div className={styles.pillarsContainer}>
@@ -91,39 +90,35 @@ export const Roadmap: React.FC = () => {
                 className={`${styles.pillar} ${isActive ? styles.activePillar : ''}`}
                 onClick={() => setActiveId(step.id)}
               >
-                {/* 1. CLOSED CARD STATE */}
-                {!isActive && (
-                  <div className={styles.closedContent}>
-                    <div className={styles.circleNumber}>{step.id}</div>
-                    <div className={styles.glowOverlay}></div>
-                    <div className={styles.verticalTitleWrapper}>
-                      <span className={styles.verticalTitle}>{step.title}</span>
-                    </div>
+                {/* 1. CLOSED CARD STATE (Always rendered, controlled via opacity) */}
+                <div className={`${styles.closedContent} ${isActive ? styles.fadeOut : ''}`}>
+                  <div className={styles.circleNumber}>{step.id}</div>
+                  <div className={styles.glowOverlay}></div>
+                  <div className={styles.verticalTitleWrapper}>
+                    <span className={styles.verticalTitle}>{step.title}</span>
                   </div>
-                )}
+                </div>
 
-                {/* 2. OPEN ACTIVE CARD STATE */}
-                {isActive && (
-                  <div className={styles.openContent}>
-                    <div className={styles.activeTopRow}>
-                      <div className={styles.activeCircleNumber}>{step.id}</div>
-                      <div className={styles.phaseBadge}>{step.phaseLabel}</div>
-                    </div>
-                    
-                    <div className={styles.activeMainArea}>
-                      <div className={styles.accentBar}></div>
-                      <div className={styles.detailsBlock}>
-                        <h3 className={styles.activeTitle}>{step.title}</h3>
-                        <p className={styles.activeDescription}>{step.description}</p>
-                        <ul className={styles.bulletList}>
-                          {step.bullets.map((bullet, i) => (
-                            <li key={i}>{bullet}</li>
-                          ))}
-                        </ul>
-                      </div>
+                {/* 2. OPEN ACTIVE CARD STATE (Always rendered, hidden smoothly if inactive) */}
+                <div className={`${styles.openContent} ${isActive ? styles.fadeIn : styles.fadeOut}`}>
+                  <div className={styles.activeTopRow}>
+                    <div className={styles.activeCircleNumber}>{step.id}</div>
+                    <div className={styles.phaseBadge}>{step.phaseLabel}</div>
+                  </div>
+                  
+                  <div className={styles.activeMainArea}>
+                    <div className={styles.accentBar}></div>
+                    <div className={styles.detailsBlock}>
+                      <h3 className={styles.activeTitle}>{step.title}</h3>
+                      <p className={styles.activeDescription}>{step.description}</p>
+                      <ul className={styles.bulletList}>
+                        {step.bullets.map((bullet, i) => (
+                          <li key={i}>{bullet}</li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}

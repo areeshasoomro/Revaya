@@ -61,7 +61,7 @@ export const WhyRevaya: React.FC = () => {
       
       <div className={styles.wrapper}>
         
-        {/* LEFT BLOCK: TYPOGRAPHY + IMAGES */}
+        {/* LEFT BLOCK: TYPOGRAPHY + GLOWING VIDEO CONTAINER */}
         <div className={styles.leftColumn}>
           <div className={`${styles.headerBlock} ${styles.revealItem}`}>
             <h2 className={styles.mainHeading}>
@@ -73,23 +73,19 @@ export const WhyRevaya: React.FC = () => {
             </p>
           </div>
 
-          <div className={styles.collageGrid}>
-            <div className={styles.collageColumn}>
-              <div className={`${styles.whyImageTall} ${styles.revealItem}`} style={{ '--delay': '1' } as React.CSSProperties}>
-                <img src="/Why1.png" alt="Analytics data overview chart" />
-              </div>
-              <div className={`${styles.whyImageShort} ${styles.revealItem}`} style={{ '--delay': '3' } as React.CSSProperties}>
-                <img src="/Why4.png" alt="System distribution sales pipeline visualization" />
-              </div>
-            </div>
-            <div className={styles.collageColumn}>
-              <div className={`${styles.whyImageShort} ${styles.revealItem}`} style={{ '--delay': '2' } as React.CSSProperties}>
-                <img src="/Why2.png" alt="Expense breakdown metrics dashboard" />
-              </div>
-              <div className={`${styles.whyImageTall} ${styles.revealItem}`} style={{ '--delay': '4' } as React.CSSProperties}>
-                <img src="/Why3.png" alt="HR profile allocation management matrix" />
-              </div>
-            </div>
+          {/* New Glowing Video Component */}
+          <div 
+            className={`${styles.videoContainer} ${styles.revealItem}`}
+            style={{ '--delay': '1.5' } as React.CSSProperties}
+          >
+            <video 
+              className={styles.videoElement}
+              src="/Revaya.mp4" 
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+            />
           </div>
         </div>
 

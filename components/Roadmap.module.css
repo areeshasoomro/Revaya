@@ -88,10 +88,11 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
+  /* Ultra smooth spring-like easing for the layout change */
+  transition: flex 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
               background-color 0.4s ease, 
               border-color 0.4s ease,
-              transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   flex: 1;
 }
 
@@ -109,14 +110,31 @@
   cursor: default;
 }
 
+/* SMOOTH VISIBILITY CONTROLS */
+.fadeOut {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.fadeIn {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* CLOSED PILLAR ARCHITECTURE */
 .closedContent {
   padding: 24px 0;
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  position: absolute; /* Ensures it does not mess with open contents positioning during transition */
+  top: 0;
+  left: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 2;
 }
 
 .circleNumber {
@@ -149,17 +167,16 @@
   opacity: 1;
 }
 
-/* ─── FIX: ADJUST VERTICAL TEXT PLACEMENT ─── */
 .verticalTitleWrapper {
   margin-top: auto;
-  margin-bottom: 90px; /* Pushed up from 30px to clear the bottom boundary entirely */
+  margin-bottom: 90px;
   transform: rotate(-90deg);
   transform-origin: center center;
   white-space: nowrap;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 0; /* Keeps rotation bounding box centered perfectly within columns */
+  width: 0;
 }
 
 .verticalTitle {
@@ -175,8 +192,10 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100%;
   box-sizing: border-box;
-  animation: fadeIn 0.5s ease forwards;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, visibility 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+  min-width: 450px; /* Prevents text layout shifting awkwardly when narrow */
 }
 
 .activeTopRow {
@@ -219,15 +238,14 @@
   flex-grow: 1;
 }
 
-/* ─── FIX: ENHANCED BLUE SIDE ACCENT LINE LENGTH ─── */
 .accentBar {
   width: 6px;
-  align-self: stretch; /* Replaced fixed min-height with stretch to dynamically match text bounds */
+  align-self: stretch;
   background: var(--color-blue-electric);
   border-radius: 4px;
-  margin-bottom: 24px; /* Matches the text system flow nicely */
+  margin-bottom: 24px;
   box-shadow: 0 0 14px rgba(1, 144, 249, 0.6);
-  animation: scaleVertical 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .detailsBlock {
@@ -267,23 +285,6 @@
   color: rgba(255, 255, 255, 0.7);
   position: relative;
   padding-left: 0;
-  animation: slideInRight 0.4s ease forwards;
-}
-
-/* ANIMATION KEYFRAMES */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.98); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes scaleVertical {
-  from { transform: scaleY(0); transform-origin: top; }
-  to { transform: scaleY(1); transform-origin: top; }
-}
-
-@keyframes slideInRight {
-  from { opacity: 0; transform: translateX(-10px); }
-  to { opacity: 1; transform: translateX(0); }
 }
 
 /* RESPONSIVE LAYOUT SCALING Rules */
@@ -301,6 +302,7 @@
     flex: none !important;
     width: 100%;
     min-height: 80px;
+    transition: min-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease;
   }
   
   .activePillar {
@@ -311,6 +313,14 @@
     flex-direction: row;
     padding: 20px;
     gap: 20px;
+    position: relative;
+  }
+
+  .openContent {
+    min-width: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 
   .glowOverlay {

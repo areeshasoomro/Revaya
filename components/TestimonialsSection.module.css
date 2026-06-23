@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght=500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap');
 
 .sectionContainer {
   --font-display: 'Space Grotesk', system-ui, sans-serif;
@@ -41,7 +41,7 @@
 
 .headerBlock {
   text-align: center;
-  margin-bottom: 120px;
+  margin-bottom: 80px;
   z-index: 5;
 }
 
@@ -68,86 +68,92 @@
 .cardsCanvas {
   position: relative;
   width: 100%;
-  max-width: 1060px;
-  height: 760px;
+  max-width: 1100px;
+  height: 700px;
 }
 
-/* ─── EXTRA RADIANT PERMANENT GLASSMORPHISM GLOW ─── */
+/* ─── HYPER-FAST BUBBLE CARD ─── */
 .glassCard {
   position: absolute;
-  width: 500px;
-  
-  /* Tinted blue back-panel base for permanent internal radiance */
-  background: linear-gradient(135deg, rgba(1, 144, 249, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
-  
-  backdrop-filter: blur(24px) saturate(140%);
-  -webkit-backdrop-filter: blur(24px) saturate(140%);
-  
-  /* Brightened vibrant neon blue border rim */
-  border: 1px solid rgba(1, 144, 249, 0.45);
+  width: 460px;
+  background: linear-gradient(135deg, rgba(1, 144, 249, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(1, 144, 249, 0.4);
   border-radius: 28px;
-  padding: 56px 40px 40px 40px;
+  padding: 50px 32px 36px 32px;
   box-sizing: border-box;
   
-  /* HEAVY PERMANENT ACTIVE GLOW (Multi-layered for dark backdrop projection) */
   box-shadow: 
-    0 30px 60px rgba(0, 0, 0, 0.7),
-    0 0 30px rgba(1, 144, 249, 0.25),   /* Core bloom */
-    0 0 60px rgba(1, 144, 249, 0.12),   /* Wide ambient bloom */
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 30px 60px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(1, 144, 249, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 
-  opacity: 0;
-  transform: translateY(40px) scale(0.97);
-  transition: opacity 0.8s cubic-bezier(0.215, 0.610, 0.355, 1), 
-              transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-              border-color 0.4s ease,
-              box-shadow 0.4s ease;
+  /* Ultra-rapid 3-second lifecycle loop */
+  animation: bubbleCycle 3s infinite cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* Stagger delays compressed tightly to prevent gaps */
+  animation-delay: calc(var(--card-idx) * 0.75s);
+  
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-.animateIn .glassCard {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  transition-delay: calc(var(--card-idx) * 0.15s);
-}
-
-/* ─── PHYSICAL POP-UP HOVER STATE ─── */
 .glassCard:hover {
-  z-index: 10 !important;
-  border-color: rgba(1, 144, 249, 0.85);
-  
-  /* Physical lift action upward */
-  transform: translateY(-12px) scale(1.03) !important;
-  
-  /* Supercharged shadow on physical interaction */
-  box-shadow: 
-    0 40px 80px rgba(0, 0, 0, 0.8),
-    0 0 40px rgba(1, 144, 249, 0.4),
-    0 0 80px rgba(1, 144, 249, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  animation-play-state: paused;
+  border-color: rgba(1, 144, 249, 0.9);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(1, 144, 249, 0.5);
+  transform: scale(1.04) !important;
+  z-index: 50 !important;
 }
 
-/* Staggered Grid Positions matching Figma Overlay Pattern */
+/* ─── HIGH-SPEED BUBBLE SNAP KEYFRAMES ─── */
+@keyframes bubbleCycle {
+  0% {
+    opacity: 0;
+    transform: scale(0.2) translateY(40px);
+  }
+  /* Instant aggressive pop-up with slight bounce overshoot */
+  12% {
+    opacity: 1;
+    transform: scale(1.04) translateY(0);
+  }
+  18% {
+    transform: scale(1) translateY(-2px);
+  }
+  /* Constant high-visibility drifting frame */
+  75% {
+    opacity: 1;
+    transform: scale(1) translateY(-25px);
+  }
+  /* Rapid clean disappear transition */
+  88%, 100% {
+    opacity: 0;
+    transform: scale(0.4) translateY(-60px);
+  }
+}
+
+/* Position mapping with offsets to give an organic float distribution */
 .cardPosition1 {
-  top: 0;
-  left: 0;
+  top: 5%;
+  left: 3%;
   z-index: 4;
 }
 
 .cardPosition2 {
-  top: 100px;
-  right: 0;
+  top: 15%;
+  right: 3%;
   z-index: 3;
 }
 
 .cardPosition3 {
-  top: 340px;
-  left: 20px;
+  bottom: 8%;
+  left: 8%;
   z-index: 2;
 }
 
 .cardPosition4 {
-  top: 450px;
-  right: 20px;
+  bottom: 5%;
+  right: 5%;
   z-index: 1;
 }
 
@@ -156,19 +162,13 @@
   top: -38px;
   left: 50%;
   transform: translateX(-50%);
-  width: 76px;
-  height: 76px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
-  border: 3px solid rgba(1, 144, 249, 0.6); /* Vibrant permanent ring border */
+  border: 3px solid rgba(1, 144, 249, 0.6);
   background: #080b10;
   overflow: hidden;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7), 0 0 15px rgba(1, 144, 249, 0.3);
-  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.glassCard:hover .avatarFrame {
-  border-color: #ffffff;
-  transform: translateX(-50%) scale(1.08);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7);
 }
 
 .avatarImage {
@@ -186,10 +186,10 @@
 
 .quoteText {
   font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 0.95rem;
+  line-height: 1.6;
   color: rgba(255, 255, 255, 0.88);
-  margin: 0 0 32px 0;
+  margin: 0 0 24px 0;
   text-align: center;
 }
 
@@ -199,28 +199,29 @@
 
 .clientName {
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--color-electric-blue);
-  margin: 0 0 4px 0;
-  text-shadow: 0 0 10px rgba(1, 144, 249, 0.3);
+  margin: 0 0 2px 0;
 }
 
 .clientRole {
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.45);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 
+/* RESPONSIVE RENDERING FALLBACK */
 @media (max-width: 1024px) {
   .cardsCanvas {
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 80px;
+    gap: 60px;
+    padding-top: 40px;
   }
   
   .glassCard {
@@ -228,12 +229,16 @@
     top: auto !important;
     left: auto !important;
     right: auto !important;
+    bottom: auto !important;
     width: 100%;
-    max-width: 520px;
+    max-width: 480px;
+    animation: mobileBubbleCycle 3s infinite ease-in-out;
+    animation-delay: calc(var(--card-idx) * 0.75s);
   }
-  
-  .glassCard:hover {
-    transform: translateY(-12px) scale(1.03) !important;
+
+  @keyframes mobileBubbleCycle {
+    0%, 100% { opacity: 0.2; transform: scale(0.98); }
+    25%, 75% { opacity: 1; transform: scale(1); }
   }
 
   .mainTitle {
@@ -247,14 +252,10 @@
   }
 
   .mainTitle {
-    font-size: 2.4rem;
+    font-size: 2.3rem;
   }
 
   .glassCard {
-    padding: 48px 24px 32px 24px;
-  }
-
-  .quoteText {
-    font-size: 0.95rem;
+    padding: 44px 20px 28px 20px;
   }
 }
