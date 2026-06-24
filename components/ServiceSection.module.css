@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght=700&display=swap');
 
 @font-face {
   font-family: 'Asta Sans';
@@ -107,7 +107,7 @@
   grid-column: span 1;
 }
 
-/* Row 2: Left Narrow (1/3) + Right Wide (2/3) -> Resolves black space gap */
+/* Row 2: Left Narrow (1/3) + Right Wide (2/3) */
 .webCard {
   grid-column: span 1;
 }
@@ -245,12 +245,14 @@
   .grid {
     grid-template-columns: 1fr;
   }
+  
   .erpCard, .saasCard, .webCard, .uiuxCard, .automationCard, .mobileCard {
     grid-column: span 1 !important;
-    min-height: 420px !important; /* Extra height room to nicely showcase centered images underneath text */
+    min-height: 480px !important; /* Raised slightly to accommodate image layout space gracefully below text */
     flex-direction: column !important;
     align-items: flex-start !important;
     justify-content: flex-start !important;
+    padding: 32px 24px !important; /* Optimized inner padding for mobile devices */
   }
 
   .automationCard .cardTextContent,
@@ -258,46 +260,54 @@
   .cardTextContent {
     max-width: 100% !important;
     margin-bottom: 0;
-    text-align: center; /* Centers the card text context on mobile devices */
+    text-align: left; /* Kept text aligned cleanly next to left accent systems */
+    padding-right: 50px; /* Leave breathing space so title doesn't crash into arrow button */
+  }
+
+  /* ── PIXEL PERFECT ACTION BUTTON RESCUE POSITIONING ── */
+  .arrowButton,
+  .automationCard .arrowButton,
+  .mobileCard .arrowButton {
+    top: 24px !important;   /* Anchors safely to the top right corner */
+    right: 24px !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 38px !important;  /* Marginally optimized button footprint for mobile viewports */
+    height: 38px !important;
   }
 
   /* ── Centered Image Positioning Logic on Mobile ── */
   .cardImage {
     left: 50% !important;
     right: auto !important;
-    top: 200px !important;
-    bottom: 2px !important; /* Elevates above bottom border */
+    top: 200px !important;     /* RECLAIM standard position boundaries to prevent visual clip */
+    bottom: 2px !important;  /* Neatly anchors graphic base above bottom margin line */
     transform: translateX(-50%) !important;
     width: auto !important;
     height: auto !important;
-    max-width: 70% !important;
-    max-height: 45% !important;
+    max-width: 75% !important;
+    max-height: 42% !important;
   }
 
-  /* Ensures smooth hover behavior translates from true center alignment */
+  /* Ensures smooth hover behavior translates cleanly from horizontal layout midpoints */
   .card:hover .cardImage {
     transform: translateX(-50%) translateY(-2px) scale(1.02) !important;
   }
-
-  /* Reposition individual card action buttons cleanly to corner margins on stacked view */
-  .arrowButton,
-  .automationCard .arrowButton,
-  .mobileCard .arrowButton {
-    top: 28px !important;
-    right: 28px !important;
-    bottom: auto !important;
-  }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 480px) {
   .section { padding: 60px 16px; }
   .heading { font-size: 32px; }
-  .card { padding: 28px; }
+  .card { padding: 24px !important; }
   .cardTitle { font-size: 20px; }
   
+  .erpCard, .saasCard, .webCard, .uiuxCard, .automationCard, .mobileCard {
+    min-height: 440px !important;
+  }
+  
   .cardImage {
-    max-width: 80% !important;
-    max-height: 40% !important;
-    bottom: 24px !important;
+    max-width: 85% !important;
+    max-height: 38% !important;
+    bottom: 16px !important;
   }
 }

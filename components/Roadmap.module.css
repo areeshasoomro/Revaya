@@ -386,7 +386,7 @@
   .accentBar {
     width: 4px; /* Slightly thinner line looks sleeker on mobile scales */
     align-self: auto; /* Overrides the 'stretch' value so it doesn't take up the full container height */
-    height: 110px; /* Explicit height constraint that perfectly balances down to the base description text */
+    height: 210px; /* Explicit height constraint that perfectly balances down to the base description text */
     margin-bottom: 0;
   }
 
@@ -424,6 +424,6 @@
   }
 
   .accentBar {
-    height: 130px; /* Slightly taller line to accommodate longer text wrapping on extremely small phones */
+    height: 220px; /* Slightly taller line to accommodate longer text wrapping on extremely small phones */
   }
 }
