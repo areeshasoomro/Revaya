@@ -85,6 +85,7 @@ canvas.particle-bg {
 ::-webkit-scrollbar-track { background: #000; }
 ::-webkit-scrollbar-thumb { background: #0190F9; border-radius: 3px; }
 
+/* Custom Animations */
 @keyframes float-y {
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(-14px); }

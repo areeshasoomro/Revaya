@@ -54,9 +54,11 @@ export const ArchitectureLayers: React.FC = () => {
       </div>
 
       <div className={styles.gridContainer}>
-        {/* NEW CLEARANCE PATH: Loops safely over the content blocks */}
+        
+        {/* SVG Connector Network (Handles both Desktop & Mobile Line Paths) */}
         <div className={styles.svgPathWrapper}>
-          <svg viewBox="0 0 1140 500" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.connectorSvg}>
+          {/* DESKTOP PATH */}
+          <svg viewBox="0 0 1140 500" fill="none" xmlns="http://www.w3.org/2000/svg" className={`${styles.connectorSvg} ${styles.desktopPath}`}>
             <path 
               d="M 190 60 
                  Q 360 -20, 570 60 
@@ -64,6 +66,14 @@ export const ArchitectureLayers: React.FC = () => {
                  Q 1080 120, 950 380
                  Q 780 300, 570 380
                  Q 360 300, 190 380" 
+              className={styles.movingLine} 
+            />
+          </svg>
+
+          {/* MOBILE & TABLET VERTICAL SNAKE PATH */}
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" className={`${styles.connectorSvg} ${styles.mobilePath}`}>
+            <path 
+              d="M 50 2 C 15 20, 85 40, 50 50 C 15 60, 85 80, 50 98" 
               className={styles.movingLine} 
             />
           </svg>
