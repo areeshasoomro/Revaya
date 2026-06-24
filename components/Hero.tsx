@@ -542,7 +542,6 @@
 
 
 
-
 "use client"
 
 import React, { useRef, useEffect, useState } from "react"
@@ -753,12 +752,12 @@ export default function Hero() {
             minHeight: "calc(100vh - 8rem)",
           }}
         >
-          {/* ── LEFT SIDE: Typography Core ── */}
+          {/* ── LEFT SIDE: Typography Core (Updated to order-1 on mobile, order-1 on desktop via grid layout) ── */}
           <motion.div
             variants={stagger}
             initial="hidden"
             animate="show"
-            className="order-2 md:order-1 items-center md:items-start text-center md:text-left"
+            className="order-1 md:order-none items-center md:items-start text-center md:text-left"
             style={{ 
               paddingRight: "0rem",
               paddingLeft: "0rem",
@@ -822,9 +821,9 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* ── RIGHT SIDE: Image Canvas Area ── */}
+          {/* ── RIGHT SIDE: Image Canvas Area (Updated to order-2 on mobile, order-2 on desktop via grid layout) ── */}
           <div 
-            className="order-1 md:order-2 w-full h-auto md:h-full desktop-container-height relative"
+            className="order-2 md:order-none w-full h-auto md:h-full desktop-container-height relative"
             style={{ overflow: "visible" }}
           >
             {/* Unified Mobile Coordinate Context Boundary */}
